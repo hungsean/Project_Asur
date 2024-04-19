@@ -10,6 +10,7 @@ def get_png_paths(folder_path):
     return png_paths
 
 def get_png_image(folder_path):
+    
     # 讀取圖片路徑
     image_paths = get_png_paths(folder_path)
 
@@ -23,8 +24,10 @@ def get_png_image(folder_path):
 
 ASPECT_16_9 = 1.7778
 def image_check_aspect(input_image, input_aspect = ASPECT_16_9, tolerance=0.02):
+    input_image = fix_input_image(input_image)
+
     # 獲取高度和寬度
-    input_image_height, input_image_width, input_image_channels = input_image.shape
+    input_image_height, input_image_width = input_image.shape
     
     # 計算長寬比
     input_image_aspect = input_image_width / input_image_height
@@ -39,34 +42,44 @@ def image_check_aspect(input_image, input_aspect = ASPECT_16_9, tolerance=0.02):
     
 RESIZE_1080P_HEIGHT = 1080
 RESIZE_1080P_WIDTH = 1920
+
 def resize_image(input_image, target_width = RESIZE_1080P_WIDTH, target_height = RESIZE_1080P_HEIGHT):
     # 縮放圖片至指定的長寬
     resized_image = cv2.resize(input_image, (target_width, target_height))
     return resized_image
 
-def crop_bottom_percent(image, percent):
-    # 读取图像
-    # image = cv2.imread(image_path)
+# 裁切
+def crop_bottom_percent(input_image, percent):
+    input_image = fix_input_image(input_image)
     
     # 获取图像高度和宽度
-    height, width, _ = image.shape
+
+    height, width= input_image.shape
     
     # 计算要裁剪的像素数
     crop_height = int(height * (1 - (percent / 100)))
     
     # 裁剪图像
-    cropped_image = image[crop_height: , : ]
+    cropped_image = input_image[crop_height: , : ]
     
     return cropped_image
 
 def canny_edges(input_image):
     # 使用Canny邊緣檢測突出邊緣
-    processed_canny_edges = cv2.Canny(input_image, 100, 200)
+    processed_canny_edges = cv2.Canny(input_image, 150, 200)
     return processed_canny_edges
 
 def image_preprocess(input_image):
     if (image_check_aspect(input_image) == False):
         print("[ERROR] wrong aspect")
-        return 
+        return None
     resized_image = resize_image(input_image)
     return resized_image
+
+def compare(settings, sample, reference):
+    
+
+def fix_input_image(input_image):
+    if len(input_image.shape) == 3:
+        input_image = cv2.cvtColor(input_image, cv2.COLOR_RGB2GRAY)
+    return input_image

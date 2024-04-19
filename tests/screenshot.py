@@ -25,7 +25,7 @@ def capture_specific_area(top, left, width, height, interval=5, filename='screen
             
             # Convert to cv2 image
             img = np.array(sct_img)
-            img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             
             # Save the image
             cv2.imwrite(filename, img)
