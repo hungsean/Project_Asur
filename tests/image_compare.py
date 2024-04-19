@@ -1,6 +1,6 @@
 from skimage.metrics import structural_similarity as ssim
 import cv2
-import image_process
+import garbage.image_process as image_process
 import time
 
 sample = cv2.imread("assets\images\sample\sample_homepage.png")

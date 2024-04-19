@@ -163,3 +163,4 @@ cython_debug/
 .vscode
 assets/screenshots
 assets/images/mask/*.psd
+garbage

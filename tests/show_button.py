@@ -1,5 +1,5 @@
 import tkinter as tk
-from screen_position import *
+from garbage.screen_position import *
 
 def on_button_click():
     print("Button clicked, closing window and returning 1")

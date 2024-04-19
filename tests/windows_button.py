@@ -1,5 +1,5 @@
 import tkinter as tk
-from screen_position import *
+from garbage.screen_position import *
 
 async def on_button_click():
     # This is where the function to execute on button click will go.
