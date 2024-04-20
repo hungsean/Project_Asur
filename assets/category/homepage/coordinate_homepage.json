@@ -1,43 +1,15 @@
 [
     {
         "start_point": {
-            "x": 0,
-            "y": 145
-        },
-        "end_point": {
-            "x": 30,
-            "y": 188
-        }
-    },
-    {
-        "start_point": {
-            "x": 1190,
-            "y": 71
-        },
-        "end_point": {
-            "x": 1244,
-            "y": 142
-        }
-    },
-    {
-        "start_point": {
             "x": 1191,
             "y": 155
         },
         "end_point": {
             "x": 1246,
             "y": 212
-        }
-    },
-    {
-        "start_point": {
-            "x": 1191,
-            "y": 230
         },
-        "end_point": {
-            "x": 1244,
-            "y": 309
-        }
+        "text": "2"
+
     },
     {
         "start_point": {
@@ -47,17 +19,8 @@
         "end_point": {
             "x": 1247,
             "y": 390
-        }
-    },
-    {
-        "start_point": {
-            "x": 1190,
-            "y": 570
         },
-        "end_point": {
-            "x": 1246,
-            "y": 656
-        }
+        "text": "4"
     },
     {
         "start_point": {
@@ -67,37 +30,8 @@
         "end_point": {
             "x": 1244,
             "y": 559
-        }
-    },
-    {
-        "start_point": {
-            "x": 1132,
-            "y": 316
         },
-        "end_point": {
-            "x": 1158,
-            "y": 436
-        }
-    },
-    {
-        "start_point": {
-            "x": 1011,
-            "y": 287
-        },
-        "end_point": {
-            "x": 1132,
-            "y": 436
-        }
-    },
-    {
-        "start_point": {
-            "x": 736,
-            "y": 358
-        },
-        "end_point": {
-            "x": 992,
-            "y": 435
-        }
+        "text": "6"
     },
     {
         "start_point": {
@@ -107,7 +41,8 @@
         "end_point": {
             "x": 1174,
             "y": 594
-        }
+        },
+        "text": "10"
     },
     {
         "start_point": {
@@ -117,7 +52,8 @@
         "end_point": {
             "x": 1245,
             "y": 716
-        }
+        },
+        "text": "11"
     },
     {
         "start_point": {
@@ -127,7 +63,8 @@
         "end_point": {
             "x": 1089,
             "y": 716
-        }
+        },
+        "text": "12"
     },
     {
         "start_point": {
@@ -137,56 +74,7 @@
         "end_point": {
             "x": 932,
             "y": 716
-        }
-    },
-    {
-        "start_point": {
-            "x": 647,
-            "y": 666
         },
-        "end_point": {
-            "x": 774,
-            "y": 716
-        }
-    },
-    {
-        "start_point": {
-            "x": 490,
-            "y": 666
-        },
-        "end_point": {
-            "x": 617,
-            "y": 716
-        }
-    },
-    {
-        "start_point": {
-            "x": 332,
-            "y": 666
-        },
-        "end_point": {
-            "x": 458,
-            "y": 716
-        }
-    },
-    {
-        "start_point": {
-            "x": 179,
-            "y": 666
-        },
-        "end_point": {
-            "x": 302,
-            "y": 716
-        }
-    },
-    {
-        "start_point": {
-            "x": 6,
-            "y": 656
-        },
-        "end_point": {
-            "x": 140,
-            "y": 716
-        }
+        "text": "13"
     }
 ]

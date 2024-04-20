@@ -4,6 +4,7 @@ import datetime
 def main():
     rectangles = []
     print("請輸入矩形的起始座標(x, y)和長寬，或輸入'stop'終止：")
+    count = 0
     while True:
         # 接收用戶輸入，如果輸入為'stop'則終止
         user_input = input()
@@ -20,15 +21,17 @@ def main():
             # 保存矩形信息
             rectangle = {
                 "start_point": {"x": x, "y": y},
-                "end_point": {"x": x2, "y": y2}
+                "end_point": {"x": x2, "y": y2},
+                "count": count
             }
+            count += 1
             rectangles.append(rectangle)
         except ValueError:
             print("輸入格式錯誤，請重新輸入。格式應為：x y width height")
 
     # 獲取當前時間並格式化為指定格式
     current_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    file_name = f"{current_time}.json"
+    file_name = f"garbage\\{current_time}.json"
 
     # 將矩形數據保存到 JSON 文件
     with open(file_name, 'w', encoding='utf-8') as f:

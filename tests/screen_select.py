@@ -47,7 +47,7 @@ def start():
     screen_selector.pack_forget()
     start_button.pack_forget()
     category_label.pack(padx=20, pady=20)
-    stop_button.pack(padx=20, pady=20)
+    stop_button.pack()
     global stop_event
     stop_event.clear()
     threading.Thread(target=run_loop, args=(stop_event, )).start()
@@ -64,7 +64,7 @@ def stop():
     # print("run join")
     stop_event.set()
     stop_button.pack_forget()
-    start_button.pack(padx=20,pady=20)
+    start_button.pack()
     return
 
 app = tk.Tk()
