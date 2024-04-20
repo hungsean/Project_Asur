@@ -28,9 +28,7 @@ def image_check_aspect(input_image, input_aspect = ASPECT_16_9):
     # input_image = fix_input_image(input_image)
 
     # 計算長寬比
-    print(input_image.shape)
     input_image_aspect = input_image.shape[1] / input_image.shape[0]
-    print(input_image_aspect)
     
     # 檢查是否在容許的誤差範圍內
     # if input_image_aspect < (input_aspect + tolerance) and input_image_aspect > (input_aspect - tolerance):
@@ -93,7 +91,6 @@ def overlay_images(background_img, overlay_img_with_alpha):
     
     # 分離overlay圖片的alpha通道和顏色通道
     overlay_img = overlay_img_with_alpha[:,:,:3]  # BGR顏色通道
-    print("alpha_mask: ",overlay_img_with_alpha.shape)
     alpha_mask = overlay_img_with_alpha[:,:,3] / 255.0  # 正規化alpha通道
 
     # 背景圖片中對應的區域需要根據alpha值進行混合
@@ -107,7 +104,40 @@ def compare(reference, sample, mask):
     masked_reference = overlay_images(reference, mask)
     compare_index = ssim(masked_sample, masked_reference, channel_axis=2)
     return compare_index
-    
+
+def compare_crop(reference, sample, coordsArray):
+    # coordArray: 
+    # [
+    #     {
+    #         "start_point": {
+    #             "x": x1,
+    #             "y": y1
+    #         },
+    #         "end_point": {
+    #             "x": x2,
+    #             "y": y2
+    #         }
+    #     },
+    #     ...
+    # ] 
+    # use json save
+    count = 0
+    compare_index = []
+    for coords in coordsArray:
+        start_x = coords["start_point"]["x"]
+        start_y = coords["start_point"]["y"]
+        end_x = coords["end_point"]["x"]
+        end_y = coords["end_point"]["y"]
+        croped_reference = reference[start_y:end_y, start_x:end_x]
+        croped_sample = sample[start_y:end_y, start_x:end_x]
+        temp_index = ssim(croped_reference, croped_sample, channel_axis=2)
+        compare_index.append(temp_index)
+        
+    return compare_index
+
+        
+
+
 
 # def fix_input_image(input_image):
 #     if len(input_image.shape) == 3:

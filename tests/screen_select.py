@@ -6,6 +6,7 @@ import mss
 from PIL import Image
 import cv2
 import numpy as np
+import time
 
 from category import index as category_index
 
@@ -17,11 +18,14 @@ def update_screen_info(event):
     start_button.config(state="normal")
     # info_label.config(text=f"Screen {monitor_index+1}: {selected_monitor.width} x {selected_monitor.height}")
 
+
 run_loop_bool = True
-def run_loop():
+def run_loop(stop_event):
     global monitor_index
+    # global run_loop_bool
+    # run_loop_bool = True
     # global monitors
-    while run_loop_bool:
+    while not stop_event.is_set():
         with mss.mss() as sct:
             sct_monitor = sct.monitors[monitor_index+1]
             screenshot = sct.grab(sct_monitor)
@@ -31,23 +35,36 @@ def run_loop():
             # print(screenshot_np.shape)
             category_name = category_index.main(screenshot_np)
             category_label.config(text=category_name)
-    return
+    print("[INFO] stop @run_loop")
+    # global run_loop_thread
+    # run_loop_thread.join()
+    # return
 
-run_loop_thread = threading.Thread(target=run_loop)
+
+# run_loop_thread = threading.Thread(target=run_loop)
+stop_event = threading.Event()
 def start():
     screen_selector.pack_forget()
     start_button.pack_forget()
     category_label.pack(padx=20, pady=20)
     stop_button.pack(padx=20, pady=20)
-    global run_loop_thread 
-    run_loop_thread.start()
+    global stop_event
+    stop_event.clear()
+    threading.Thread(target=run_loop, args=(stop_event, )).start()
+    print("start!")
 
     return
 
 def stop():
-    global run_loop_thread
-    run_loop_bool = False
-    run_loop_thread.join()
+    print("stopping")
+    # global run_loop_thread
+    # global run_loop_bool
+    # run_loop_bool = False
+    # time.sleep(1)
+    # print("run join")
+    stop_event.set()
+    stop_button.pack_forget()
+    start_button.pack(padx=20,pady=20)
     return
 
 app = tk.Tk()
@@ -66,7 +83,7 @@ screen_selector.bind("<<ComboboxSelected>>", update_screen_info)
 
 
 start_button = tk.Button(app, text="start", command=start, state="disabled")
-start_button.pack(pady=20)
+start_button.pack(padx=20,pady=20)
 
 category_label = tk.Label(app, text="Select a screen to see its resolution")
 category_label.pack_forget()

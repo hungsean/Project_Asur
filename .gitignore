@@ -162,5 +162,5 @@ cython_debug/
 # vscode settings
 .vscode
 assets/screenshots
-assets/images/mask/*.psd
+assets/category/homepage/*.psd
 garbage

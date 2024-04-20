@@ -8,9 +8,7 @@ def main(main_input_image):
     homepage_index = homepage.check(main_input_image)
 
     response = ""
-    if homepage_index > 0.9:
-        response = "homepage " + str(homepage_index)
-    else:
-        response = "unknown " + str(homepage_index)
+    for sub_index in homepage_index:
+        response += str(sub_index) + "\n"
 
     return response
