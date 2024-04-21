@@ -1,18 +1,5 @@
-import json
 import os
 
-def read_json(file_path):
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            output_file = json.load(file)
-            return output_file
-    except FileNotFoundError:
-        print(f"未找到原始文件 {file_path}。請確認文件是否存在。")
-        return
-    except json.JSONDecodeError:
-        print(f"原始文件 {file_path} 格式錯誤。")
-        return
-    
 def find_subdirectories(parent_directory):
     # 檢查給定的目錄是否真的存在
     if not os.path.exists(parent_directory):
@@ -32,5 +19,7 @@ def find_subdirectories(parent_directory):
 
     return directories
 
-
-
+# 使用函數
+parent_dir = "assets\category"  # 這裡替換成你的目錄路徑
+subdirectories = find_subdirectories(parent_dir)
+print(subdirectories)
