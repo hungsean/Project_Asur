@@ -4,7 +4,7 @@ import datetime
 def resize_coordinates():
     # 讀取原始矩形數據
     try:
-        with open('20240420151000.json', 'r', encoding='utf-8') as file:
+        with open('garbage\\20240422192944.json', 'r', encoding='utf-8') as file:
             rectangles = json.load(file)
     except FileNotFoundError:
         print("未找到原始文件 'rectangles.json'。請確認文件是否存在。")
@@ -19,6 +19,7 @@ def resize_coordinates():
 
     # 轉換座標
     resized_rectangles = []
+    count = 0
     for rect in rectangles:
         start_x = int(rect['start_point']['x'] * x_scale)
         start_y = int(rect['start_point']['y'] * y_scale)
@@ -27,8 +28,10 @@ def resize_coordinates():
 
         resized_rectangles.append({
             "start_point": {"x": start_x, "y": start_y},
-            "end_point": {"x": end_x, "y": end_y}
+            "end_point": {"x": end_x, "y": end_y},
+            "count": count
         })
+        count += 1
 
     # 獲取當前時間並格式化為指定格式
     current_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
