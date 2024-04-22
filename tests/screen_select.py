@@ -34,6 +34,7 @@ def run_loop(stop_event):
             screenshot_np = screenshot_np[:, :, :3]
             # print(screenshot_np.shape)
             category_name = category_index.main(screenshot_np)
+            print("result: ",category_index.get_category_end())
             category_label.config(text=category_name)
     print("[INFO] stop @run_loop")
     # global run_loop_thread
