@@ -1,0 +1,35 @@
+[
+    {
+        "start_point": {
+            "x": 0,
+            "y": 0
+        },
+        "end_point": {
+            "x": 1280,
+            "y": 181
+        },
+        "count": 0
+    },
+    {
+        "start_point": {
+            "x": 157,
+            "y": 598
+        },
+        "end_point": {
+            "x": 506,
+            "y": 663
+        },
+        "count": 1
+    },
+    {
+        "start_point": {
+            "x": 635,
+            "y": 352
+        },
+        "end_point": {
+            "x": 774,
+            "y": 446
+        },
+        "count": 2
+    }
+]

@@ -48,7 +48,7 @@ def main(main_input_image):
     response += f"\n{category_result_end['name']}: {category_result_end['index']:.2f}\n"
 
     # debug
-    debug_category = find_name(category_assets, "total_rewards_stop")
+    debug_category = find_name(category_assets, "checkpoint_task")
     debug_name = debug_category["name"]
     debug_sample = debug_category["sample"]
     debug_coordsArray = debug_category["coordsArray"]
