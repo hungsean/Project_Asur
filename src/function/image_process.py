@@ -1,6 +1,9 @@
 import os
 import cv2
 from skimage.metrics import structural_similarity as ssim
+import mss
+from PIL import Image
+import numpy as np
 
 def get_png_paths(folder_path):
     png_paths = []
@@ -116,7 +119,8 @@ def compare_crop(reference, sample, coordsArray):
     #         "end_point": {
     #             "x": x2,
     #             "y": y2
-    #         }
+    #         },
+    #         "count": number
     #     },
     #     ...
     # ] 
@@ -135,6 +139,14 @@ def compare_crop(reference, sample, coordsArray):
         
     return compare_index
 
+def screenshot(screen_index):
+    with mss.mss() as sct:
+        sct_monitor = sct.monitors[screen_index+1]
+        screenshot = sct.grab(sct_monitor)
+        screenshot_PIL = Image.frombytes('RGB', (screenshot.width, screenshot.height), screenshot.rgb)
+        screenshot_np = np.array(screenshot_PIL)
+        screenshot_np = screenshot_np[:, :, :3]
+        return screenshot_np
         
 
 

@@ -16,13 +16,13 @@ for category_entry in category_path:
     sample = cv2.imread(path + "\sample.png")
     sample = image_process.preprocess(sample)
     coordsArray = file.read_json(path + "\coordinate.json")
-    execute = importlib.import_module(f"category.{name}").execute
-    category_assets.append({"name": name, "sample": sample, "coordsArray": coordsArray, "execute": execute})
+    # execute = importlib.import_module(f"category.{name}").execute
+    category_assets.append({"name": name, "sample": sample, "coordsArray": coordsArray})
 # [{"name": <name>, "sample": <sample>, "coordsArray": <coordsArray>}]
 
 
 category_result_end = {}
-def main(main_input_image):
+def debug(main_input_image, target: str):
     main_input_image = image_process.preprocess(main_input_image)
     response = ""
     start_time = time.time()
@@ -35,20 +35,18 @@ def main(main_input_image):
         coordsArray = category_entry["coordsArray"]
         ssim_index = image_process.compare_crop(main_input_image, sample, coordsArray)
         ssim_index_avg = avg(ssim_index)
-        category_result.append({"name": name, "index": ssim_index_avg, "execute": category_entry["execute"]})
+        category_result.append({"name": name, "index": ssim_index_avg})
         response += f"{name}: {ssim_index_avg:.2f}\n"
 
     global category_result_end
     category_result_end_temp = max(category_result, key=lambda x: x['index'])
     if category_result_end_temp['index'] < 0.5:
         category_result_end_temp['name'] = "unknown"
-    else:
-        category_result_end_temp["execute"]()
     category_result_end = category_result_end_temp
     response += f"\n{category_result_end['name']}: {category_result_end['index']:.2f}\n"
 
     # debug
-    debug_category = find_name(category_assets, "checkpoint_task")
+    debug_category = find_name(category_assets, target)
     debug_name = debug_category["name"]
     debug_sample = debug_category["sample"]
     debug_coordsArray = debug_category["coordsArray"]
