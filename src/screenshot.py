@@ -1,7 +1,9 @@
 import mss
+import tkinter as tk
 import time
 import cv2
 import numpy as np
+import pyautogui
 
 def capture_specific_area(top, left, width, height, interval=5, filename='screenshot.png'):
     """

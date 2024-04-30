@@ -1,11 +1,14 @@
 # from . import homepage
 # from . import retired
 # from . import dock_full
-from function import image_process, file
+
 import time
 import cv2
 import importlib
 import winsound
+
+from function import image_process, file
+from frame import start as start_frame
 
 category_path = file.find_subdirectories("assets\category")
 # [{"name": <name>, "path": <path>}]
@@ -64,6 +67,24 @@ def debug(main_input_image, target: str):
     print("[INFO] time: ", f"{(end_time - start_time):.2f}")
     return response
 
+def check_sub(input_image, target_names: list[str]):
+    input_image = image_process.preprocess(input_image)
+    global category_assets
+    target_list = filter_dicts(target_names, category_assets)
+    result_list = []
+    for target_entry in target_list:
+        target_index = image_process.compare_crop(input_image, target_entry['sample'], target_entry['coordsArray'])
+        target_index_avg = avg(target_index)
+        result_list.append({"name": target_entry['name'], "index": target_index_avg})
+        
+    return result_list
+
+def check_main(target_names: list[str]):
+    now_screenshot = image_process.screenshot(start_frame.monitor_index)
+    check_result = check_sub(now_screenshot, target_names)
+    check_result_max = data_post_process(check_result)
+    return check_result_max
+
 def avg(array):
     if not array:  # 檢查列表是否為空
         return 0  # 如果列表為空，返回0或其他合適的值
@@ -77,3 +98,23 @@ def find_name(array, name):
 
 def get_category_end():
     return category_result_end["name"]
+
+def filter_dicts(names, dict_list):
+    # 將 names 轉換為集合以提高查找效率
+    name_set = set(names)
+    # 初始化輸出陣列
+    output_dicts = []
+    # 遍歷 dict_list，檢查每個字典的 "name" 是否存在於 name_set 中
+    for item in dict_list:
+        if item['name'] in name_set:
+            output_dicts.append(item)
+    if len(output_dicts) != len(names):
+        print("[ERROR] have name not exist @category/index.py.filter_dicts")
+        return None
+    return output_dicts
+
+def data_post_process(result_list):
+    result_max = max(result_list, key=lambda x: x['index'])
+    if result_max['index'] < 0.5:
+        result_max['name'] = "unknown"
+    return result_max

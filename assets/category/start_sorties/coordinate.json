@@ -1,0 +1,57 @@
+[
+    {
+        "start_point": {
+            "x": 314,
+            "y": 151
+        },
+        "end_point": {
+            "x": 963,
+            "y": 200
+        },
+        "count": 0
+    },
+    {
+        "start_point": {
+            "x": 821,
+            "y": 243
+        },
+        "end_point": {
+            "x": 906,
+            "y": 288
+        },
+        "count": 1
+    },
+    {
+        "start_point": {
+            "x": 773,
+            "y": 442
+        },
+        "end_point": {
+            "x": 948,
+            "y": 503
+        },
+        "count": 3
+    },
+    {
+        "start_point": {
+            "x": 747,
+            "y": 547
+        },
+        "end_point": {
+            "x": 961,
+            "y": 614
+        },
+        "count": 4
+    },
+    {
+        "start_point": {
+            "x": 978,
+            "y": 549
+        },
+        "end_point": {
+            "x": 1181,
+            "y": 615
+        },
+        "count": 5
+    }
+]

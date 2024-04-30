@@ -1,17 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
-from screeninfo import get_monitors
-import threading
-import mss
-from PIL import Image
-import cv2
-import numpy as np
-import time
 
-from category import index as category_index
 from frame import start as start_frame
 from frame import mode_selector as mode_selector_frame
 from frame import debug_mode as debug_mode_frame
+from frame import auto_stage as auto_stage_frame
+
+from function import image_process
 
 # monitor_index = 0
 # def update_screen_info(event):
@@ -91,8 +85,8 @@ app.title("Screen Selector")
 start_frame.init_frame(app)
 mode_selector_frame.init_frame(app)
 debug_mode_frame.init_frame(app)
+auto_stage_frame.init_frame(app)
 start_frame.frame.pack()
-
 
 
 

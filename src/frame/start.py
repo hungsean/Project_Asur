@@ -1,13 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
-from screeninfo import get_monitors
+# from screeninfo import get_monitors
+import mss
 
 from frame import mode_selector
 from function import frame as frame_function
 
-monitors = get_monitors()
-screen_names = [f"Screen {i+1}: {m.width}x{m.height}" for i, m in enumerate(monitors)]
-
+monitors = mss.mss().monitors
+print(monitors)
+# screen_names = [f"Screen {i+1}: {m.width}x{m.height}" for i, m in enumerate(monitors)]
+screen_names = [f"Screen {i}" for i in range(len(monitors))]
 monitor_index = 0
 
 frame = None
@@ -40,6 +42,7 @@ def start_button_active():
 def update_screen_info(event):
     global monitor_index
     monitor_index = selector.current()
+    print("[INFO] monitor index: ", monitor_index)
     start_button.config(state="normal")
 
 def isSingleScreen():

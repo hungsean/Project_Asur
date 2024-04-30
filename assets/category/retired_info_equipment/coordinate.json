@@ -1,0 +1,46 @@
+[
+    {
+        "start_point": {
+            "x": 227,
+            "y": 135
+        },
+        "end_point": {
+            "x": 1050,
+            "y": 184
+        },
+        "count": 0
+    },
+    {
+        "start_point": {
+            "x": 231,
+            "y": 509
+        },
+        "end_point": {
+            "x": 654,
+            "y": 579
+        },
+        "count": 1
+    },
+    {
+        "start_point": {
+            "x": 666,
+            "y": 515
+        },
+        "end_point": {
+            "x": 842,
+            "y": 577
+        },
+        "count": 2
+    },
+    {
+        "start_point": {
+            "x": 869,
+            "y": 514
+        },
+        "end_point": {
+            "x": 1045,
+            "y": 575
+        },
+        "count": 3
+    }
+]

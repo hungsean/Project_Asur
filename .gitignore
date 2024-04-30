@@ -165,3 +165,6 @@ assets/screenshots
 assets/category/*/*.psd
 garbage
 *.bat
+merged_programs.txt
+monitor-1.png
+screenshot.png
