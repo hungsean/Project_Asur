@@ -2,6 +2,8 @@ import os
 import cv2
 from skimage.metrics import structural_similarity as ssim
 import mss
+from PIL import Image
+import numpy as np
 
 def get_png_paths(folder_path):
     png_paths = []
@@ -112,20 +114,20 @@ def compare_crop(reference, sample, coordsArray):
     return compare_index
 
 
-# def screenshot(screen_index):
-#     with mss.mss() as sct:
-#         sct_monitor = sct.monitors[screen_index+1]
-#         screenshot = sct.grab(sct_monitor)
-#         screenshot_PIL = Image.frombytes('RGB', (screenshot.width, screenshot.height), screenshot.rgb)
-#         screenshot_np = np.array(screenshot_PIL)
-#         # screenshot_np = screenshot_np[:, :, :3]
-#         screenshot_np = screenshot_np[:, :, [2, 1, 0]]  # 將BGR轉換為RGB
-#         return screenshot_np
-def screenshot(screen_index: int):
+def screenshot(screen_index):
     with mss.mss() as sct:
-        print(sct.monitors)
-        sct.shot(mon=(screen_index+1), output="assets\\screenshots\\temp.png")
-        screenshot_np = cv2.imread("assets\\screenshots\\temp.png")
+        sct_monitor = sct.monitors[screen_index+1]
+        screenshot = sct.grab(sct_monitor)
+        screenshot_PIL = Image.frombytes('RGB', (screenshot.width, screenshot.height), screenshot.rgb)
+        screenshot_np = np.array(screenshot_PIL)
+        # screenshot_np = screenshot_np[:, :, :3]
+        screenshot_np = screenshot_np[:, :, [2, 1, 0]]  # 將BGR轉換為RGB
         return screenshot_np
+# def screenshot(screen_index: int):
+#     with mss.mss() as sct:
+#         print(sct.monitors)
+#         sct.shot(mon=(screen_index+1), output="assets\\screenshots\\temp.png")
+#         screenshot_np = cv2.imread("assets\\screenshots\\temp.png")
+#         return screenshot_np
         
 

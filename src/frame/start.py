@@ -1,15 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
-# from screeninfo import get_monitors
-import mss
+from screeninfo import get_monitors
 
 from frame import mode_selector
 from function import frame as frame_function
 
-monitors = mss.mss().monitors
-print(monitors)
-# screen_names = [f"Screen {i+1}: {m.width}x{m.height}" for i, m in enumerate(monitors)]
-screen_names = [f"Screen {i}" for i in range(len(monitors))]
+monitors = get_monitors()
+screen_names = [f"Screen {i+1}: {m.width}x{m.height}" for i, m in enumerate(monitors)]
+# screen_names = [f"Screen {i}" for i in range(len(monitors))]
 monitor_index = 0
 
 frame = None

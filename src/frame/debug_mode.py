@@ -50,7 +50,7 @@ def run_loop(stop_event):
     while not stop_event.is_set():
         start_time = time.time()  # 紀錄迴圈開始時間
         screenshot = image_function.screenshot(start_frame.monitor_index)
-        category_name = category_index.debug(screenshot, "get_material")   
+        category_name = category_index.debug(screenshot, "have_back")   
         print("result: ",category_index.get_category_end())
         text_label.config(text=category_name)
         time_function.reduce_frequency(start_time, 1)
